@@ -28,13 +28,13 @@ public class ServicoController {
     @Autowired
     private VeiculoService veiculoService;
 
-    @PostMapping
+    /* @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Servico cadastrarServico(@RequestBody  @Valid CadastrarServicoDTO cadastrarServicoDTO) {
         Veiculo veiculo = veiculoService.pesquisarChassi(cadastrarServicoDTO.getChassi());
         Funcionario funcionario = funcionarioService.pesquisarPorCpf(cadastrarServicoDTO.getCpfFuncionario());
         return servicoService.cadatrar(cadastrarServicoDTO.converterCadastrarServicoDTOParaServico(veiculo, funcionario));
-    }
+    }*/
 
     @GetMapping("{cpf}/")
     @ResponseStatus(HttpStatus.OK)

@@ -10,52 +10,34 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-
+@CrossOrigin
 @RestController
-@RequestMapping("/clientes/")
+@RequestMapping("/clientes")
 public class ClienteController {
-
-    @Autowired
-    private ClienteService clienteService;
 
     @Autowired
     private ClienteRepository clienteRepository;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Cliente cadastrarCliente(@RequestBody @Valid Cliente cliente){
-    //clienteService.cadastrarCliente(cliente);
+    public Cliente cadastrarCliente(@RequestBody Cliente cliente){
        Cliente clienteNovo =  this.clienteRepository.save(cliente);
-    return clienteNovo;
+       return clienteNovo;
     }
-
-    @GetMapping("{cpf}/")
-    @ResponseStatus(HttpStatus.OK)
-    public Cliente pesquisarPeloCpf(@PathVariable String cpf){
-        return  clienteService.pesquisarPeloCpf(cpf);
-    }
-
-    @DeleteMapping("{cpf}/")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteClientePeloCpf(@PathVariable String cpf){
-        clienteService.deletarClientePeloCPF(cpf);
-    }
-
+   
     @GetMapping
     public ResponseEntity<List <Cliente>> indexDeLista(){
         List<Cliente> clienteList = this.clienteRepository.findAll();
         return  ResponseEntity.ok(clienteList);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Cliente> atualizarClientes(@PathVariable Integer id, @RequestBody  Cliente cliente){
         cliente.setCodCliente(id);
         Cliente clienteAtualizado = this.clienteRepository.save(cliente);
         return ResponseEntity.ok(clienteAtualizado);
     }
 
-    @DeleteMapping("{cpf}/")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
     public ResponseEntity<Cliente> excluirCliente(@PathVariable Integer id){
         this.clienteRepository.deleteById(id);
         return ResponseEntity.noContent().build();

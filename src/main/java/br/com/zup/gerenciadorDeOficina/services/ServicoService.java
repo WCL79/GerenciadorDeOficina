@@ -31,9 +31,7 @@ public class ServicoService {
         List<Servico> servicosDoCliente = new ArrayList<>();
 
         for(Servico servico : servicos) {
-            if (servico.getVeiculo().getDonoDoVeiculo().getCpf().equalsIgnoreCase(cpf)) {
-                servicosDoCliente.add(servico);
-            }
+         
         }
 
         return servicosDoCliente;

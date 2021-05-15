@@ -97,13 +97,7 @@ public class CadastrarVeiculoDTO {
 
     public Veiculo converterCadastrarVeiculoDTOparaVeiculo(Cliente donoDoVeiculo) {
         Veiculo veiculo = new Veiculo();
-        veiculo.setTipoDeVeiculo(this.tipoDeVeiculo);
-        veiculo.setMarcaDoVeiculo(this.marcaDoVeiculo);
-        veiculo.setAnoDoVeiculo(this.anoDoVeiculo);
-        veiculo.setModeloDoVeiculo(this.modeloDoVeiculo);
-        veiculo.setPlacaDoVeiculo(this.placaDoVeiculo);
-        veiculo.setChassi(this.chassi);
-        veiculo.setDonoDoVeiculo(donoDoVeiculo);
+        
 
         return veiculo;
     }
