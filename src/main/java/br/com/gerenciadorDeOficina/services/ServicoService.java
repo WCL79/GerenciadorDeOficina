@@ -31,9 +31,7 @@ public class ServicoService {
         List<Servico> servicosDoCliente = new ArrayList<>();
 
         for(Servico servico : servicos) {
-            if (servico.getVeiculo().getDonoDoVeiculo().getCpf().equalsIgnoreCase(cpf)) {
-                servicosDoCliente.add(servico);
-            }
+
         }
 
         return servicosDoCliente;
@@ -42,8 +40,8 @@ public class ServicoService {
     public boolean deletarOrdemServico(Integer servico){
         for(Servico ordemServico : servicos){
             if(ordemServico.getOrdemDeServico() == ordemServico.getOrdemDeServico() ){
-                    servicos.remove(ordemServico);
-                    return true;
+                servicos.remove(ordemServico);
+                return true;
             }
         }
         throw new RuntimeException("Nome não encontrado!");
