@@ -1,86 +1,121 @@
 package br.com.gerenciadorDeOficina.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Objects;
-
+@Entity
 public class Veiculo {
+    @javax.persistence.Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer Id;
 
-    private String tipoDeVeiculo;
-    private String marcaDoVeiculo;
-    private String modeloDoVeiculo;
-    private Integer anoDoVeiculo;
-    private String placaDoVeiculo;
-    private String chassi;
-    private Cliente donoDoVeiculo;
+    private String placa;
+    private String marca;
+    private String cor;
+    private String ano;
+    private String modelo;
+
 
     public Veiculo() {
     }
 
-    public String getTipoDeVeiculo() {
-        return tipoDeVeiculo;
+
+
+
+
+    public Integer getId() {
+        return Id;
     }
 
-    public void setTipoDeVeiculo(String tipoDeVeiculo) {
-        this.tipoDeVeiculo = tipoDeVeiculo;
+
+
+
+
+    public void setId(Integer id) {
+        Id = id;
     }
 
-    public String getMarcaDoVeiculo() {
-        return marcaDoVeiculo;
+
+
+
+
+    public String getPlaca() {
+        return placa;
     }
 
-    public void setMarcaDoVeiculo(String marcaDoVeiculo) {
-        this.marcaDoVeiculo = marcaDoVeiculo;
+
+
+
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 
-    public String getModeloDoVeiculo() {
-        return modeloDoVeiculo;
+
+
+
+
+    public String getMarca() {
+        return marca;
     }
 
-    public void setModeloDoVeiculo(String modeloDoVeiculo) {
-        this.modeloDoVeiculo = modeloDoVeiculo;
+
+
+
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
-    public Integer getAnoDoVeiculo() {
-        return anoDoVeiculo;
+
+
+
+
+    public String getCor() {
+        return cor;
     }
 
-    public void setAnoDoVeiculo(Integer anoDoVeiculo) {
-        this.anoDoVeiculo = anoDoVeiculo;
+
+
+
+
+    public void setCor(String cor) {
+        this.cor = cor;
     }
 
-    public String getPlacaDoVeiculo() {
-        return placaDoVeiculo;
+
+
+
+
+    public String getAno() {
+        return ano;
     }
 
-    public void setPlacaDoVeiculo(String placaDoVeiculo) {
-        this.placaDoVeiculo = placaDoVeiculo;
+
+
+
+
+    public void setAno(String ano) {
+        this.ano = ano;
     }
 
-    public String getChassi() {
-        return chassi;
+
+
+
+
+    public String getModelo() {
+        return modelo;
     }
 
-    public void setChassi(String chassi) {
-        this.chassi = chassi;
+
+
+
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
-    public Cliente getDonoDoVeiculo() {
-        return donoDoVeiculo;
-    }
-
-    public void setDonoDoVeiculo(Cliente donoDoVeiculo) {
-        this.donoDoVeiculo = donoDoVeiculo;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Veiculo veiculo = (Veiculo) o;
-        return Objects.equals(chassi, veiculo.chassi);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(chassi);
-    }
 }
+

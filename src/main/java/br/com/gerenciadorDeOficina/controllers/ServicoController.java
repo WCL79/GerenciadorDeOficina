@@ -51,7 +51,5 @@ public class ServicoController {
         }catch (RuntimeException erro){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, erro.getMessage());
         }
-
     }
-
 }

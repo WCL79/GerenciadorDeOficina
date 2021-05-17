@@ -3,6 +3,7 @@ package br.com.gerenciadorDeOficina.models;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+
 public class Endereco {
 
     @NotBlank(message = "Campo rua não pode ser vazio!")

@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/veiculos/")
+@RequestMapping("/veiculos")
 public class VeiculoController {
 
     @Autowired
@@ -24,26 +25,13 @@ public class VeiculoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Veiculo cadastrar(@RequestBody @Valid CadastrarVeiculoDTO cadastrarVeiculoDTO) {
-        Cliente cliente = clienteService.pesquisarPeloCpf(cadastrarVeiculoDTO.getCpf());
-        return veiculoService.cadastrar(cadastrarVeiculoDTO.converterCadastrarVeiculoDTOparaVeiculo(cliente));
-    }
+    public Veiculo cadastrar(@RequestBody Veiculo cadastrarVeiculoDTO) {
 
-    @GetMapping("{chassi}/")
-    @ResponseStatus(HttpStatus.OK)
-    public Veiculo pesquisarVeiculoPorChassi(@PathVariable String chassi) {
-        return veiculoService.pesquisarChassi(chassi);
+        return veiculoService.cadastrar(cadastrarVeiculoDTO);
     }
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Veiculo> mostrarTodosOsVeiculos() {
         return veiculoService.listarTodosVeiculos();
-    }
-
-    @DeleteMapping("{chassi}/")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletarVeiculoPeloChassi(@PathVariable String chassi) {
-        veiculoService.deletar(chassi);
     }
 }
