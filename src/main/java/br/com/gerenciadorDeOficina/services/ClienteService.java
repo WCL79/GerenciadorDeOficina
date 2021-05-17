@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 public class ClienteService {
 
@@ -25,7 +26,7 @@ public class ClienteService {
         for (Cliente cliente : clientes) {
             if (cliente.getCpf().equalsIgnoreCase(cpf)) {
                 return cliente;
-            }   
+            }
         }
         throw new ClienteNaoLocalizadoExcecao("Nenhum cliente foi encontrado com CPF: " + cpf);
     }
