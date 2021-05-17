@@ -28,9 +28,6 @@ public class VeiculoService {
 
 
     public List<Veiculo> listarTodosVeiculos() {
-        // if (veiculos.size() == 0) {
-        //     throw new ListaVeiculoVazia("Não existe nenhum veículo cadastrado!");
-        // }
         List<Veiculo> veiculos = this.repository.findAll();
         return veiculos;
     }
