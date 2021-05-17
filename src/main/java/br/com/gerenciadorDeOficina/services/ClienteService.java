@@ -18,27 +18,17 @@ public class ClienteService {
             clientes.add(cliente);
             return cliente;
         }
-        throw new ClienteDuplicadoExcecao("O CPF " + cliente.getCpf() + " e e-mail " + cliente.getEmail() +
+        throw new ClienteDuplicadoExcecao("O CPF " + cliente.getId() + " e e-mail " + cliente.getEmail() +
                 " cliente EXISTENTE!");
     }
 
-    public Cliente pesquisarPeloCpf(String cpf) {
+    public Cliente pesquisarPeloCpf(Integer id) {
         for (Cliente cliente : clientes) {
-            if (cliente.getCpf().equalsIgnoreCase(cpf)) {
+            if (cliente.getId().equals(id)) {
                 return cliente;
             }
         }
-        throw new ClienteNaoLocalizadoExcecao("Nenhum cliente foi encontrado com CPF: " + cpf);
-    }
-
-    public void deletarClientePeloCPF(String cpf){
-        Cliente clienteDeletar = pesquisarPeloCpf(cpf);
-
-        if (clienteDeletar == null) {
-            throw new ClienteNaoLocalizadoExcecao("Cliente não localizado com " + cpf);
-        }
-
-        clientes.remove(clienteDeletar);
+        throw new ClienteNaoLocalizadoExcecao("Nenhum cliente foi encontrado com  esse ID: " + id);
     }
 
 }

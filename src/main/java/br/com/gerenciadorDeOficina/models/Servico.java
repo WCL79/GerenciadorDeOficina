@@ -13,12 +13,29 @@ public class Servico {
     private Integer id;
 
     private Integer ordemDeServico;
-    private LocalDate dataDeEntrada;
-    private LocalDate dataDeSaida;
+    private String mecanica;
+    private LocalDate dataCriacao;
     private String tipoDeServico;
-    private String responsavelPeloServico;
+    private Double valor;
+
 
     public Servico() {
+    }
+
+    public LocalDate getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(LocalDate dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 
     public Integer getId() {
@@ -37,22 +54,6 @@ public class Servico {
         this.ordemDeServico = ordemDeServico;
     }
 
-    public LocalDate getDataDeEntrada() {
-        return dataDeEntrada;
-    }
-
-    public void setDataDeEntrada(LocalDate dataDeEntrada) {
-        this.dataDeEntrada = dataDeEntrada;
-    }
-
-    public LocalDate getDataDeSaida() {
-        return dataDeSaida;
-    }
-
-    public void setDataDeSaida(LocalDate dataDeSaida) {
-        this.dataDeSaida = dataDeSaida;
-    }
-
     public String getTipoDeServico() {
         return tipoDeServico;
     }
@@ -61,11 +62,11 @@ public class Servico {
         this.tipoDeServico = tipoDeServico;
     }
 
-    public String getResponsavelPeloServico() {
-        return responsavelPeloServico;
+    public String getMecanica() {
+        return mecanica;
     }
 
-    public void setResponsavelPeloServico(String responsavelPeloServico) {
-        this.responsavelPeloServico = responsavelPeloServico;
+    public void setMecanica(String mecanica) {
+        this.mecanica = mecanica;
     }
 }
