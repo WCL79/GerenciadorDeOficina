@@ -33,7 +33,7 @@ public class ClienteController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> atualizarClientes(@PathVariable Integer id, @RequestBody  Cliente cliente){
-        cliente.setCodCliente(id);
+        cliente.setId(id);
         Cliente clienteAtualizado = this.clienteRepository.save(cliente);
         return ResponseEntity.ok(clienteAtualizado);
     }
