@@ -1,16 +1,25 @@
 package br.com.gerenciadorDeOficina.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.br.CPF;
 
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Objects;
 
+@Table(name = "clientes")
+@Entity
 public class Cliente {
 
-    @NotBlank(message = "Campo do nome não pode ser vazio!")
-    @NotNull(message = "O campo do nome não foi informada")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer codCliente;
+
+
+    @Column(nullable = false, unique = true)
     private String nomeCompleto;
 
 
@@ -26,10 +35,19 @@ public class Cliente {
     private String email;
     private String telefone;
 
-    @NotNull(message = "Campo endereco não foi informado")
-    private Endereco endereco;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate dataNascimento;
+
 
     public Cliente() {
+    }
+
+    public Integer getCodCliente() {
+        return codCliente;
+    }
+
+    public void setCodCliente(Integer codCliente) {
+        this.codCliente = codCliente;
     }
 
     public String getNomeCompleto() {
@@ -64,12 +82,16 @@ public class Cliente {
         this.telefone = telefone;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     @Override
