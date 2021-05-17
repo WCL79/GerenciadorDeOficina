@@ -16,7 +16,7 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codCliente;
+    private Integer id;
 
 
     @Column(nullable = false, unique = true)
@@ -42,12 +42,12 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Integer getCodCliente() {
-        return codCliente;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCodCliente(Integer codCliente) {
-        this.codCliente = codCliente;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNomeCompleto() {

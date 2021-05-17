@@ -16,10 +16,6 @@ public class CadastrarServicoDTO {
     @NotNull(message = "o campo ordemDeServico não foi informado")
     private Integer ordemDeServico;
 
-    @NotNull(message = "o campo chassi não foi informado")
-    @NotEmpty(message = "o campo chassi está vazio")
-    private String chassi;
-
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataDeEntrada;
 
@@ -30,13 +26,6 @@ public class CadastrarServicoDTO {
     @NotEmpty(message = "o campo tipoDeServico está vazio")
     private String tipoDeServico;
 
-
-    private Andamento andamento;
-
-    @NotNull(message = "o campo cpfFuncionario não foi informado")
-    @NotEmpty(message = "o campo cpfFuncionario está vazio")
-    @CPF(message = "CPF inválido!")
-    private String cpfFuncionario;
 
     @NotNull(message = "o campo responsavelPeloServico não foi informado")
     @NotEmpty(message = "o campo responsavelPeloServico está vazio")
@@ -51,14 +40,6 @@ public class CadastrarServicoDTO {
 
     public void setOrdemDeServico(Integer ordemDeServico) {
         this.ordemDeServico = ordemDeServico;
-    }
-
-    public String getChassi() {
-        return chassi;
-    }
-
-    public void setChassi(String chassi) {
-        this.chassi = chassi;
     }
 
     public LocalDate getDataDeEntrada() {
@@ -85,22 +66,6 @@ public class CadastrarServicoDTO {
         this.tipoDeServico = tipoDeServico;
     }
 
-    public Andamento getAndamento() {
-        return andamento;
-    }
-
-    public void setAndamento(Andamento andamento) {
-        this.andamento = andamento;
-    }
-
-    public String getCpfFuncionario() {
-        return cpfFuncionario;
-    }
-
-    public void setCpfFuncionario(String cpfFuncionario) {
-        this.cpfFuncionario = cpfFuncionario;
-    }
-
     public String getResponsavelPeloServico() {
         return responsavelPeloServico;
     }
@@ -109,15 +74,12 @@ public class CadastrarServicoDTO {
         this.responsavelPeloServico = responsavelPeloServico;
     }
 
-    public Servico converterCadastrarServicoDTOParaServico(Veiculo veiculo, Funcionario funcionario) {
+    public Servico converterCadastrarServicoDTOParaServico() {
         Servico servico = new Servico();
         servico.setOrdemDeServico(this.ordemDeServico);
-        servico.setVeiculo(veiculo);
         servico.setDataDeEntrada(this.dataDeEntrada);
         servico.setDataDeSaida(this.dataDeSaida);
         servico.setTipoDeServico(this.tipoDeServico);
-        servico.setAndamento(this.andamento);
-        servico.setFuncionario(funcionario);
         servico.setResponsavelPeloServico(responsavelPeloServico);
 
         return servico;

@@ -1,21 +1,32 @@
 package br.com.gerenciadorDeOficina.models;
 
-import br.com.gerenciadorDeOficina.models.enums.Andamento;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Table(name = "servicos")
+@Entity
 public class Servico {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private Integer ordemDeServico;
-    private Veiculo veiculo;
     private LocalDate dataDeEntrada;
     private LocalDate dataDeSaida;
     private String tipoDeServico;
-    private Andamento andamento;
-    private Funcionario funcionario;
     private String responsavelPeloServico;
 
     public Servico() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getOrdemDeServico() {
@@ -24,14 +35,6 @@ public class Servico {
 
     public void setOrdemDeServico(Integer ordemDeServico) {
         this.ordemDeServico = ordemDeServico;
-    }
-
-    public Veiculo getVeiculo() {
-        return veiculo;
-    }
-
-    public void setVeiculo(Veiculo veiculo) {
-        this.veiculo = veiculo;
     }
 
     public LocalDate getDataDeEntrada() {
@@ -58,22 +61,6 @@ public class Servico {
         this.tipoDeServico = tipoDeServico;
     }
 
-    public Andamento getAndamento() {
-        return andamento;
-    }
-
-    public void setAndamento(Andamento andamento) {
-        this.andamento = andamento;
-    }
-
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
-
     public String getResponsavelPeloServico() {
         return responsavelPeloServico;
     }
@@ -81,5 +68,4 @@ public class Servico {
     public void setResponsavelPeloServico(String responsavelPeloServico) {
         this.responsavelPeloServico = responsavelPeloServico;
     }
-
 }
