@@ -58,5 +58,4 @@ public class CadastrarServicoDTO {
 
         return servico;
     }
-
 }

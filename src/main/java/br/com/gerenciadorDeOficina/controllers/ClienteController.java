@@ -43,6 +43,4 @@ public class ClienteController {
         this.clienteRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
-
 }
