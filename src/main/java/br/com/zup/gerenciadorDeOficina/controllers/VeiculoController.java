@@ -7,6 +7,7 @@ import br.com.zup.gerenciadorDeOficina.services.ClienteService;
 import br.com.zup.gerenciadorDeOficina.services.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -37,5 +38,12 @@ public class VeiculoController {
         return veiculoService.listarTodosVeiculos();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Veiculo> buscaPorId(@PathVariable Integer id ){
+    	Veiculo veiculo = veiculoService.buscaPorId(id);
+    	return ResponseEntity.ok(veiculo);
+    }
     
 }
+
+

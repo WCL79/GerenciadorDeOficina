@@ -35,5 +35,9 @@ public class VeiculoService {
     	List<Veiculo> veiculos = this.repository.findAll();
         return veiculos;
     }
+    
+    public Veiculo buscaPorId(Integer id) {
+    	return  this.repository.findById(id).get();
+    }
 
 }
