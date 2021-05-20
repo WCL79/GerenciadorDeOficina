@@ -1,9 +1,6 @@
 package br.com.gerenciadorDeOficina.services;
 
-import br.com.gerenciadorDeOficina.exceptions.ChassiException;
 import br.com.gerenciadorDeOficina.models.Veiculo;
-import br.com.gerenciadorDeOficina.exceptions.ListaVeiculoVazia;
-import br.com.gerenciadorDeOficina.exceptions.VeiculoDuplicadoExcecao;
 import br.com.gerenciadorDeOficina.repositories.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

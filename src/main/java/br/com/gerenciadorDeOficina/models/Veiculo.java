@@ -1,6 +1,7 @@
 package br.com.gerenciadorDeOficina.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "veiculos")
 @Entity
@@ -15,6 +16,9 @@ public class Veiculo {
     private String cor;
     private String ano;
     private String modelo;
+
+    @ManyToMany
+    private List<Servico> servicoList;
 
 
     public Veiculo() {

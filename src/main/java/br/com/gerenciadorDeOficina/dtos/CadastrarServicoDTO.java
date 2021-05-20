@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class CadastrarServicoDTO {
 
     @NotNull(message = "o campo ordemDeServico não foi informado")
-    private Integer ordemDeServico;
+    private String ordemDeServico;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataCriacao;
@@ -35,15 +35,24 @@ public class CadastrarServicoDTO {
         this.dataCriacao = dataCriacao;
     }
 
-    public Integer getOrdemDeServico() {
+    public String getOrdemDeServico() {
         return ordemDeServico;
     }
 
-    public void setOrdemDeServico(Integer ordemDeServico) {
+    public void setOrdemDeServico(String ordemDeServico) {
         this.ordemDeServico = ordemDeServico;
     }
+
     public String getTipoDeServico() {
         return tipoDeServico;
+    }
+
+    public String getMecanica() {
+        return mecanica;
+    }
+
+    public void setMecanica(String mecanica) {
+        this.mecanica = mecanica;
     }
 
     public void setTipoDeServico(String tipoDeServico) {
@@ -52,6 +61,7 @@ public class CadastrarServicoDTO {
 
     public Servico converterCadastrarServicoDTOParaServico() {
         Servico servico = new Servico();
+        servico.setDataCriacao(this.dataCriacao);
         servico.setOrdemDeServico(this.ordemDeServico);
         servico.setTipoDeServico(this.tipoDeServico);
         servico.setMecanica(mecanica);

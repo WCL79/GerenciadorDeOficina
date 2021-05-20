@@ -5,8 +5,6 @@ package br.com.gerenciadorDeOficina.services;
  */
 
 import br.com.gerenciadorDeOficina.models.Funcionario;
-import br.com.gerenciadorDeOficina.exceptions.FuncionarioExistenteException;
-import br.com.gerenciadorDeOficina.exceptions.FuncionarioNaoLocalizadoException;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,33 +18,33 @@ public class FuncionarioService {
         return funcionarios;
     }
 
-    public Funcionario cadastrarFuncionario(Funcionario funcionario){
+    public Funcionario cadastrarFuncionario(Funcionario funcionario) throws Exception {
         validarCPF(funcionario);
         funcionarios.add(funcionario);
         return funcionario;
 
     }
 
-    public Funcionario pesquisarPorCpf(String cpf) throws RuntimeException {
+    public Funcionario pesquisarPorCpf(String cpf) throws Exception {
         for (Funcionario funcionario : funcionarios) {
             if (funcionario.getCpf().equals(cpf)) {
                 return funcionario;
             }
-        }throw new FuncionarioNaoLocalizadoException("O funcinário com o CPF " + cpf + " não foi localizado!");
+        }throw new Exception("O funcinário com o CPF " + cpf + " não foi localizado!");
     }
 
-    public void validarCPF(Funcionario funcionario) {
+    public void validarCPF(Funcionario funcionario) throws Exception {
         for (Funcionario funcionarioCPF : funcionarios){
             if (funcionarioCPF.getCpf().equals(funcionario.getCpf())){
-                throw new FuncionarioExistenteException("O CPF já esta cadastrado!");
+                throw new Exception("O CPF já esta cadastrado!");
             }
         }
     }
 
-    public void deletarfuncionarioPeloCPF(String cpf) {
+    public void deletarfuncionarioPeloCPF(String cpf) throws Exception {
         Funcionario funcionarioDeletar = pesquisarPorCpf(cpf);
         if (funcionarioDeletar == null) {
-            throw new FuncionarioNaoLocalizadoException("O funcinário com o CPF " + cpf + " não foi localizado!");
+            throw new Exception("O funcinário com o CPF " + cpf + " não foi localizado!");
         }
 
         funcionarios.remove(funcionarioDeletar);

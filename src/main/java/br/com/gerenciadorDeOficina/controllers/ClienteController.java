@@ -1,15 +1,12 @@
 package br.com.gerenciadorDeOficina.controllers;
 
-import br.com.gerenciadorDeOficina.models.Cliente;
-import br.com.gerenciadorDeOficina.repositories.ClienteRepository;
-import br.com.gerenciadorDeOficina.services.ClienteService;
+import br.com.gerenciadorDeOficina.models.Usuario;
+import br.com.gerenciadorDeOficina.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
-import java.util.List;
 
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -17,22 +14,22 @@ import java.util.List;
 public class ClienteController {
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private UsuarioService usuarioService;
 
     @PostMapping
-    public Cliente cadastrarCliente(@RequestBody Cliente cliente){
-        Cliente clienteNovo =  this.clienteRepository.save(cliente);
-        return clienteNovo;
+    public Usuario cadastrarUsuario(@RequestBody Usuario usuario) throws Exception {
+        Usuario novousuario =  this.usuarioService.cadastrarNovoUsuario(usuario);
+        return novousuario;
     }
-
+/*
     @GetMapping
-    public ResponseEntity<List<Cliente>> indexDeLista(){
-        List<Cliente> clienteList = this.clienteRepository.findAll();
+    public ResponseEntity<List<Usuario>> indexDeLista(){
+        List<Usuario> clienteList = this.clienteRepository.findAll();
         return  ResponseEntity.ok(clienteList);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> atualizarClientes(@PathVariable Integer id, @RequestBody  Cliente cliente){
+    public ResponseEntity<Usuario> atualizarClientes(@PathVariable Long id, @RequestBody  Usuario usuario){
         cliente.setId(id);
         Cliente clienteAtualizado = this.clienteRepository.save(cliente);
         return ResponseEntity.ok(clienteAtualizado);
@@ -42,5 +39,5 @@ public class ClienteController {
     public ResponseEntity<Cliente> excluirCliente(@PathVariable Integer id){
         this.clienteRepository.deleteById(id);
         return ResponseEntity.noContent().build();
-    }
+    }*/
 }
