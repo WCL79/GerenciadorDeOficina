@@ -1,7 +1,6 @@
 package br.com.gerenciadorDeOficina.controllers;
 
 import br.com.gerenciadorDeOficina.models.Veiculo;
-import br.com.gerenciadorDeOficina.services.ClienteService;
 import br.com.gerenciadorDeOficina.services.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,8 +16,6 @@ public class VeiculoController {
     @Autowired
     private VeiculoService veiculoService;
 
-    @Autowired
-    private ClienteService clienteService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

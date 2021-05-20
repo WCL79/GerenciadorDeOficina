@@ -1,7 +1,6 @@
 package br.com.gerenciadorDeOficina.services;
 
 import br.com.gerenciadorDeOficina.models.Servico;
-import br.com.gerenciadorDeOficina.exceptions.ListaDeServicoDoClienteVaziaExcecao;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,11 +16,11 @@ public class ServicoService {
         return servico;
     }
 
-    public List<Servico> listarTodosServicosPeloCpfDoCliente(String cpf) {
+    public List<Servico> listarTodosServicosPeloCpfDoCliente(String cpf) throws Exception {
         List<Servico> servicosDoCliente = gerarListaDeServicoPorCpf(cpf);
 
         if (servicosDoCliente.size() == 0) {
-            throw new ListaDeServicoDoClienteVaziaExcecao("nenhum serviço foi localizado com CPF " + cpf + "!");
+            throw new Exception("nenhum serviço foi localizado com CPF " + cpf + "!");
         }
 
         return servicosDoCliente;

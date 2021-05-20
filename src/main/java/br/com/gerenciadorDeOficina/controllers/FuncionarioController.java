@@ -20,7 +20,7 @@ public class FuncionarioController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Funcionario cadastrarFuncionario (@RequestBody @Valid Funcionario funcionario){
+    public Funcionario cadastrarFuncionario (@RequestBody @Valid Funcionario funcionario) throws Exception {
         funcionarioService.cadastrarFuncionario(funcionario);
         return funcionario;
 
@@ -34,7 +34,7 @@ public class FuncionarioController {
 
     @DeleteMapping("{cpf}/")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletefuncionarioPeloCPF(@PathVariable String cpf) {
+    public void deletefuncionarioPeloCPF(@PathVariable String cpf) throws Exception {
         funcionarioService.deletarfuncionarioPeloCPF(cpf);
     }
 }

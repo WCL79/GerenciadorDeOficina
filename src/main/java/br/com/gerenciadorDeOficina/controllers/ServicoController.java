@@ -38,7 +38,7 @@ public class ServicoController {
 
     @GetMapping("{cpf}/")
     @ResponseStatus(HttpStatus.OK)
-    public List<Servico> mostrarTodosServicosDoClientePorCpf(@PathVariable String cpf) {
+    public List<Servico> mostrarTodosServicosDoClientePorCpf(@PathVariable String cpf) throws Exception {
         return servicoService.listarTodosServicosPeloCpfDoCliente(cpf);
     }
 

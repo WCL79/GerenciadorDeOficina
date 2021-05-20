@@ -3,6 +3,7 @@ package br.com.gerenciadorDeOficina.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Table(name = "servicos")
 @Entity
@@ -12,7 +13,7 @@ public class Servico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer ordemDeServico;
+    private String ordemDeServico;
     private String mecanica;
     private LocalDate dataCriacao;
     private String tipoDeServico;
@@ -46,11 +47,11 @@ public class Servico {
         this.id = id;
     }
 
-    public Integer getOrdemDeServico() {
+    public String getOrdemDeServico() {
         return ordemDeServico;
     }
 
-    public void setOrdemDeServico(Integer ordemDeServico) {
+    public void setOrdemDeServico(String ordemDeServico) {
         this.ordemDeServico = ordemDeServico;
     }
 
