@@ -13,14 +13,32 @@ public class Servico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(length = 20, nullable = false)
     private String ordemDeServico;
+
+    @Column(length = 20, nullable = false)
     private String mecanica;
+
     private LocalDate dataCriacao;
+
+    @Column(length = 50, nullable = false)
     private String tipoDeServico;
+
+    @Column
     private Double valor;
 
 
     public Servico() {
+
+    }
+
+    public Servico(Integer id, String ordemDeServico, String mecanica, LocalDate dataCriacao, String tipoDeServico, Double valor) {
+        this.id = id;
+        this.ordemDeServico = ordemDeServico;
+        this.mecanica = mecanica;
+        this.dataCriacao = dataCriacao;
+        this.tipoDeServico = tipoDeServico;
+        this.valor = valor;
     }
 
     public LocalDate getDataCriacao() {

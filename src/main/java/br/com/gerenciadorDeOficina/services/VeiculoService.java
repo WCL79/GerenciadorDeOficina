@@ -9,16 +9,14 @@ import java.util.List;
 
 @Service
 public class VeiculoService {
+
     @Autowired
     private VeiculoRepository repository;
+
     private List<Veiculo> veiculos = new ArrayList<>();
 
     public Veiculo cadastrar(Veiculo veiculo) {
-       /* validarChassi(veiculo);
-        if (veiculos.contains(veiculo)) {
-            throw new VeiculoDuplicadoExcecao("o veículo com chassi " + veiculo.getChassi() + " já existe no sistema!");
-        }
-        veiculos.add(veiculo);*/
+
         Veiculo veiculoCadastrado = this.repository.save(veiculo);
         return veiculoCadastrado;
     }

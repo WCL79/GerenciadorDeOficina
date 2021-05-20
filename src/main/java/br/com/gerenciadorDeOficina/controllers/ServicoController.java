@@ -1,9 +1,7 @@
 package br.com.gerenciadorDeOficina.controllers;
 
-import br.com.gerenciadorDeOficina.dtos.CadastrarServicoDTO;
-import br.com.gerenciadorDeOficina.models.Funcionario;
+import br.com.gerenciadorDeOficina.dtos.entrada.CadastrarServicoDTO;
 import br.com.gerenciadorDeOficina.models.Servico;
-import br.com.gerenciadorDeOficina.models.Veiculo;
 import br.com.gerenciadorDeOficina.services.FuncionarioService;
 import br.com.gerenciadorDeOficina.services.ServicoService;
 import br.com.gerenciadorDeOficina.services.VeiculoService;
@@ -19,27 +17,26 @@ import java.util.List;
 @RequestMapping("/servicos/")
 public class ServicoController {
 
-    @Autowired
-    private ServicoService servicoService;
+
+    private final ServicoService servicoService;
+    private final VeiculoService veiculoService;
 
     @Autowired
-    private FuncionarioService funcionarioService;
+    public ServicoController(ServicoService servicoService, VeiculoService veiculoService) {
+        this.servicoService = servicoService;
+        this.veiculoService = veiculoService;
+    }
 
-    @Autowired
-    private VeiculoService veiculoService;
-
-    /* @PostMapping
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Servico cadastrarServico(@RequestBody  @Valid CadastrarServicoDTO cadastrarServicoDTO) {
-        Veiculo veiculo = veiculoService.pesquisarChassi(cadastrarServicoDTO.getChassi());
-        Funcionario funcionario = funcionarioService.pesquisarPorCpf(cadastrarServicoDTO.getCpfFuncionario());
-        return servicoService.cadatrar(cadastrarServicoDTO.converterCadastrarServicoDTOParaServico(veiculo, funcionario));
-    }*/
+        return servicoService.cadatrar(cadastrarServicoDTO.converterCadastrarServicoDTOParaServico());
+    }
 
-    @GetMapping("{cpf}/")
+    @GetMapping("{ordemServico}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Servico> mostrarTodosServicosDoClientePorCpf(@PathVariable String cpf) throws Exception {
-        return servicoService.listarTodosServicosPeloCpfDoCliente(cpf);
+    public List<Servico> mostrarTodosServicosDoClientePorCpf(@PathVariable String os) throws Exception {
+        return servicoService.listarTodosServicosPelaOrdemDeServico(os);
     }
 
     @DeleteMapping("{ordemServico}")

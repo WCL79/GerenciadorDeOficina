@@ -16,26 +16,24 @@ public class ServicoService {
         return servico;
     }
 
-    public List<Servico> listarTodosServicosPeloCpfDoCliente(String cpf) throws Exception {
-        List<Servico> servicosDoCliente = gerarListaDeServicoPorCpf(cpf);
+    public List<Servico> listarTodosServicosPelaOrdemDeServico(String os) throws Exception {
+        List<Servico> servicosDoCliente = gerarListaDeServicoPorOS(os);
 
         if (servicosDoCliente.size() == 0) {
-            throw new Exception("nenhum serviço foi localizado com CPF " + cpf + "!");
+            throw new Exception("Não há essa Ordem de Serviço " + os + "!");
         }
 
         return servicosDoCliente;
     }
 
-    private List<Servico> gerarListaDeServicoPorCpf(String cpf) {
+    private List<Servico> gerarListaDeServicoPorOS(String cpf) {
         List<Servico> servicosDoCliente = new ArrayList<>();
 
         for(Servico servico : servicos) {
 
         }
-
         return servicosDoCliente;
     }
-
     public boolean deletarOrdemServico(Integer servico){
         for(Servico ordemServico : servicos){
             if(ordemServico.getOrdemDeServico() == ordemServico.getOrdemDeServico() ){
@@ -45,7 +43,6 @@ public class ServicoService {
         }
         throw new RuntimeException("Nome não encontrado!");
     }
-
 }
 
 
