@@ -39,11 +39,20 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
         http.cors().configurationSource(configuracaoDeCors());
 
         http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/clientes").permitAll()
-                .antMatchers(HttpMethod.POST, "/login").permitAll()
-                .antMatchers(HttpMethod.GET, "/clientes").permitAll()
-                .antMatchers(HttpMethod.PATCH, "/clientes/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/clientes", "veiculo", "/servicos/")
+                .permitAll()
+                .antMatchers(HttpMethod.POST, "/login")
+                .permitAll()
+                .antMatchers(HttpMethod.GET, "/clientes", "veiculo", "/servicos/")
+                .permitAll()
+                .antMatchers(HttpMethod.PATCH, "/clientes/**", "veiculo", "/servicos/")
+                .permitAll()
+                .antMatchers("/h2-console/**")
+                .permitAll()
                 .anyRequest().authenticated();
+
+        http.headers().frameOptions().disable();
+
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS.STATELESS);
 
@@ -54,7 +63,8 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/**", "/swagger-ui.html", "/webjars/**");
+        web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
+                "/configuration/**", "/swagger-ui.html", "/webjars/**");
     }
 
     @Bean

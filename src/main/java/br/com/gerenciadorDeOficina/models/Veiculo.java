@@ -3,7 +3,7 @@ package br.com.gerenciadorDeOficina.models;
 import javax.persistence.*;
 import java.util.List;
 
-@Table(name = "veiculos")
+@Table(name = "tb_veiculo")
 @Entity
 public class Veiculo {
 
@@ -11,13 +11,25 @@ public class Veiculo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
 
+    @Column(length = 15, nullable = false)
     private String placa;
+
+    @Column(length = 20, nullable = false)
     private String marca;
+
+    @Column(length = 12, nullable = false)
     private String cor;
+
+    @Column(length = 10, nullable = false)
     private String ano;
+
+    @Column(length = 50, nullable = false)
     private String modelo;
 
     @ManyToMany
+    @JoinTable (name = "tb_veiculo_servico",
+            joinColumns = @JoinColumn(name = "veiculo_id"),
+            inverseJoinColumns = @JoinColumn (name = "servico_id"))
     private List<Servico> servicoList;
 
 

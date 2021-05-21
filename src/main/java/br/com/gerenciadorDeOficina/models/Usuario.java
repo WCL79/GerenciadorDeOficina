@@ -21,6 +21,9 @@ public class Usuario {
     private String senha;
 
     @OneToMany
+    @JoinTable (name = "tb_usuario_veiculo",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn (name = "veiculo_id"))
     private List<Veiculo> veiculoList;
 
     public Usuario() {

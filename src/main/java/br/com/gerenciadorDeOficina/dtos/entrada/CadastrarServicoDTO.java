@@ -1,30 +1,31 @@
-package br.com.gerenciadorDeOficina.dtos;
+package br.com.gerenciadorDeOficina.dtos.entrada;
 
 import br.com.gerenciadorDeOficina.models.Servico;;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class CadastrarServicoDTO {
 
-    @NotNull(message = "o campo ordemDeServico não foi informado")
+
     private String ordemDeServico;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataCriacao;
 
-    @NotNull(message = "o campo tipoDeServico não foi informado")
-    @NotEmpty(message = "o campo tipoDeServico está vazio")
     private String tipoDeServico;
 
-
-    @NotNull(message = "o campo responsavelPeloServico não foi informado")
-    @NotEmpty(message = "o campo responsavelPeloServico está vazio")
     private String mecanica;
 
+    private Double valor;
+
     public CadastrarServicoDTO() {
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 
     public LocalDate getDataCriacao() {
@@ -60,11 +61,13 @@ public class CadastrarServicoDTO {
     }
 
     public Servico converterCadastrarServicoDTOParaServico() {
+
         Servico servico = new Servico();
         servico.setDataCriacao(this.dataCriacao);
         servico.setOrdemDeServico(this.ordemDeServico);
         servico.setTipoDeServico(this.tipoDeServico);
-        servico.setMecanica(mecanica);
+        servico.setMecanica(this.mecanica);
+        servico.setValor(this.valor);
 
         return servico;
     }
