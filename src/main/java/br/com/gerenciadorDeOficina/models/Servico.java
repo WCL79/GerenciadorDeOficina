@@ -1,9 +1,8 @@
 package br.com.gerenciadorDeOficina.models;
 
-
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
+
 
 @Table(name = "servicos")
 @Entity
@@ -19,7 +18,8 @@ public class Servico {
     @Column(length = 20, nullable = false)
     private String mecanica;
 
-    private LocalDate dataCriacao;
+    @Column
+    private String dataCriacao;
 
     @Column(length = 50, nullable = false)
     private String tipoDeServico;
@@ -32,20 +32,21 @@ public class Servico {
 
     }
 
-    public Servico(Integer id, String ordemDeServico, String mecanica, LocalDate dataCriacao, String tipoDeServico, Double valor) {
+    public Servico(Integer id, String ordemDeServico, String mecanica, String dataCriacao, String tipoDeServico, Double valor, List<Veiculo> veiculoList) {
         this.id = id;
         this.ordemDeServico = ordemDeServico;
         this.mecanica = mecanica;
         this.dataCriacao = dataCriacao;
         this.tipoDeServico = tipoDeServico;
         this.valor = valor;
+
     }
 
-    public LocalDate getDataCriacao() {
+    public String getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(LocalDate dataCriacao) {
+    public void setDataCriacao(String dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 

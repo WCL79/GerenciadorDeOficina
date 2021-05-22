@@ -9,7 +9,7 @@ public class CadastrarServicoDTO {
 
     private String ordemDeServico;
 
-    private LocalDate dataCriacao;
+    private String dataCriacao;
 
     private String tipoDeServico;
 
@@ -28,11 +28,11 @@ public class CadastrarServicoDTO {
         this.valor = valor;
     }
 
-    public LocalDate getDataCriacao() {
+    public String getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(LocalDate dataCriacao) {
+    public void setDataCriacao(String dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 

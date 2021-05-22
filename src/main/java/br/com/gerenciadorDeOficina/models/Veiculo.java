@@ -2,6 +2,7 @@ package br.com.gerenciadorDeOficina.models;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Table(name = "tb_veiculo")
 @Entity
@@ -9,7 +10,7 @@ public class Veiculo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
+    private Long Id;
 
     @Column(length = 15, nullable = false)
     private String placa;
@@ -26,22 +27,17 @@ public class Veiculo {
     @Column(length = 50, nullable = false)
     private String modelo;
 
-    @ManyToMany
-    @JoinTable (name = "tb_veiculo_servico",
-            joinColumns = @JoinColumn(name = "veiculo_id"),
-            inverseJoinColumns = @JoinColumn (name = "servico_id"))
+    @OneToMany
     private List<Servico> servicoList;
 
-
-    public Veiculo() {
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return Id;
     }
-    public void setId(Integer id) {
+
+    public void setId(Long id) {
         Id = id;
     }
+
     public String getPlaca() {
         return placa;
     }
@@ -57,6 +53,7 @@ public class Veiculo {
     public void setMarca(String marca) {
         this.marca = marca;
     }
+
     public String getCor() {
         return cor;
     }
@@ -68,6 +65,7 @@ public class Veiculo {
     public String getAno() {
         return ano;
     }
+
     public void setAno(String ano) {
         this.ano = ano;
     }
@@ -80,5 +78,12 @@ public class Veiculo {
         this.modelo = modelo;
     }
 
+    public List<Servico> getServicoList() {
+        return servicoList;
+    }
+
+    public void setServicoList(List<Servico> servicoList) {
+        this.servicoList = servicoList;
+    }
 }
 

@@ -14,18 +14,14 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/servicos/")
+@RequestMapping("servico")
 public class ServicoController {
 
-
-    private final ServicoService servicoService;
-    private final VeiculoService veiculoService;
+    @Autowired
+    private ServicoService servicoService;
 
     @Autowired
-    public ServicoController(ServicoService servicoService, VeiculoService veiculoService) {
-        this.servicoService = servicoService;
-        this.veiculoService = veiculoService;
-    }
+    private VeiculoService veiculoService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -33,18 +29,17 @@ public class ServicoController {
         return servicoService.cadatrar(cadastrarServicoDTO.converterCadastrarServicoDTOParaServico());
     }
 
-    @GetMapping("{ordemServico}")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Servico> mostrarTodosServicosDoClientePorCpf(@PathVariable String os) throws Exception {
-        return servicoService.listarTodosServicosPelaOrdemDeServico(os);
+    public List<Servico> mostrarTodosServicosDoClientePorCpf(@PathVariable Integer id) throws Exception {
+        return (List<Servico>) servicoService.procurarServioPeloID(id);
     }
 
-    @DeleteMapping("{ordemServico}")
+    @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletarOrdemServico(@PathVariable Integer ordemServico){
-
+    public void deletarOrdemServico(@PathVariable Integer id){
         try{
-            servicoService.deletarOrdemServico(ordemServico);
+            servicoService.deletarOrdemServico(id);
         }catch (RuntimeException erro){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, erro.getMessage());
         }

@@ -1,47 +1,34 @@
 package br.com.gerenciadorDeOficina.services;
 
 import br.com.gerenciadorDeOficina.models.Servico;
+import br.com.gerenciadorDeOficina.repositories.ServicoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ServicoService {
 
-    private List<Servico> servicos = new ArrayList<>();
+    @Autowired
+    private ServicoRepository servicoRepository;
+
 
     public Servico cadatrar(Servico servico) {
-        servicos.add(servico);
+        Servico servico1 = servicoRepository.save(servico);
         return servico;
     }
 
-    public List<Servico> listarTodosServicosPelaOrdemDeServico(String os) throws Exception {
-        List<Servico> servicosDoCliente = gerarListaDeServicoPorOS(os);
+    public Servico procurarServioPeloID(Integer id) throws Exception {
+        Optional<Servico> optionalServico = servicoRepository.findById(id);
 
-        if (servicosDoCliente.size() == 0) {
-            throw new Exception("Não há essa Ordem de Serviço " + os + "!");
+        if (optionalServico.isEmpty()) {
+            throw new Exception("Ordem de Serviço com id " + id + " não existe!");
         }
-
-        return servicosDoCliente;
+        return optionalServico.get();
     }
-
-    private List<Servico> gerarListaDeServicoPorOS(String cpf) {
-        List<Servico> servicosDoCliente = new ArrayList<>();
-
-        for(Servico servico : servicos) {
-
-        }
-        return servicosDoCliente;
-    }
-    public boolean deletarOrdemServico(Integer servico){
-        for(Servico ordemServico : servicos){
-            if(ordemServico.getOrdemDeServico() == ordemServico.getOrdemDeServico() ){
-                servicos.remove(ordemServico);
-                return true;
-            }
-        }
-        throw new RuntimeException("Nome não encontrado!");
+    public void deletarOrdemServico(Integer id) {
+        servicoRepository.deleteById(id);
     }
 }
 

@@ -39,13 +39,13 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
         http.cors().configurationSource(configuracaoDeCors());
 
         http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/clientes", "veiculo", "/servicos/")
+                .antMatchers(HttpMethod.POST, "/clientes", "veiculo**", "servico**")
                 .permitAll()
-                .antMatchers(HttpMethod.POST, "/login")
+                .antMatchers(HttpMethod.POST, "login")
                 .permitAll()
-                .antMatchers(HttpMethod.GET, "/clientes", "veiculo", "/servicos/")
+                .antMatchers(HttpMethod.GET, "/clientes", "veiculo**", "servico**")
                 .permitAll()
-                .antMatchers(HttpMethod.PATCH, "/clientes/**", "veiculo", "/servicos/")
+                .antMatchers(HttpMethod.PATCH, "/clientes/**", "veiculo**", "servico**")
                 .permitAll()
                 .antMatchers("/h2-console/**")
                 .permitAll()
@@ -54,7 +54,7 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
 
 
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS.STATELESS);
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilter(new FiltroAutencicacaoJWT(componenteJWT, authenticationManager(), usuarioService));
         http.addFilter(new FiltroDeAutorizacao(authenticationManager(), componenteJWT, usuarioLoginService));
