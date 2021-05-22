@@ -19,7 +19,7 @@ public class ServicoService {
         return servico;
     }
 
-    public Servico procurarServioPeloID(Integer id) throws Exception {
+    public Servico procurarServioPeloID(Long id) throws Exception {
         Optional<Servico> optionalServico = servicoRepository.findById(id);
 
         if (optionalServico.isEmpty()) {
@@ -27,7 +27,7 @@ public class ServicoService {
         }
         return optionalServico.get();
     }
-    public void deletarOrdemServico(Integer id) {
+    public void deletarOrdemServico(Long id) {
         servicoRepository.deleteById(id);
     }
 }

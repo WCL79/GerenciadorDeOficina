@@ -10,44 +10,61 @@ public class Servico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(length = 20, nullable = false)
-    private String ordemDeServico;
+    @Column(length = 20)
+    private String os;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 20)
     private String mecanica;
-
-    @Column
-    private String dataCriacao;
-
-    @Column(length = 50, nullable = false)
-    private String tipoDeServico;
 
     @Column
     private Double valor;
 
+    @Column(length = 50)
+    private String item;
+
+    @Column
+    private String dataCriacao;
+
+    @Column
+    private Long idVeiculo;
 
     public Servico() {
-
     }
 
-    public Servico(Integer id, String ordemDeServico, String mecanica, String dataCriacao, String tipoDeServico, Double valor, List<Veiculo> veiculoList) {
+    public Servico(Long id, String os, String mecanica, Double valor, String item, String dataCriacao, Long idVeiculo) {
         this.id = id;
-        this.ordemDeServico = ordemDeServico;
+        this.os = os;
         this.mecanica = mecanica;
-        this.dataCriacao = dataCriacao;
-        this.tipoDeServico = tipoDeServico;
         this.valor = valor;
-
-    }
-
-    public String getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(String dataCriacao) {
+        this.item = item;
         this.dataCriacao = dataCriacao;
+        this.idVeiculo = idVeiculo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getOs() {
+        return os;
+    }
+
+    public void setOs(String os) {
+        this.os = os;
+    }
+
+    public String getMecanica() {
+        return mecanica;
+    }
+
+    public void setMecanica(String mecanica) {
+        this.mecanica = mecanica;
     }
 
     public Double getValor() {
@@ -58,35 +75,27 @@ public class Servico {
         this.valor = valor;
     }
 
-    public Integer getId() {
-        return id;
+    public String getItem() {
+        return item;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setItem(String item) {
+        this.item = item;
     }
 
-    public String getOrdemDeServico() {
-        return ordemDeServico;
+    public String getDataCriacao() {
+        return dataCriacao;
     }
 
-    public void setOrdemDeServico(String ordemDeServico) {
-        this.ordemDeServico = ordemDeServico;
+    public void setDataCriacao(String dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
-    public String getTipoDeServico() {
-        return tipoDeServico;
+    public Long getIdVeiculo() {
+        return idVeiculo;
     }
 
-    public void setTipoDeServico(String tipoDeServico) {
-        this.tipoDeServico = tipoDeServico;
-    }
-
-    public String getMecanica() {
-        return mecanica;
-    }
-
-    public void setMecanica(String mecanica) {
-        this.mecanica = mecanica;
+    public void setIdVeiculo(Long idVeiculo) {
+        this.idVeiculo = idVeiculo;
     }
 }

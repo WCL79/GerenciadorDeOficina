@@ -1,9 +1,6 @@
 package br.com.gerenciadorDeOficina.dtos.entrada;
 
-import br.com.gerenciadorDeOficina.models.Servico;
 import br.com.gerenciadorDeOficina.models.Veiculo;
-
-import java.util.List;
 
 public class CadastroVeiculoDTO {
 

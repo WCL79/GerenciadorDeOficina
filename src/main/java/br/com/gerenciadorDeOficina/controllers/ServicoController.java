@@ -25,19 +25,19 @@ public class ServicoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Servico cadastrarServico(@RequestBody  @Valid CadastrarServicoDTO cadastrarServicoDTO) {
-        return servicoService.cadatrar(cadastrarServicoDTO.converterCadastrarServicoDTOParaServico());
+    public Servico cadastrarServico(@RequestBody   Servico cadastrarServicoDTO) {
+        return servicoService.cadatrar(cadastrarServicoDTO);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Servico> mostrarTodosServicosDoClientePorCpf(@PathVariable Integer id) throws Exception {
+    public List<Servico> mostrarTodosServicosPeloID(@PathVariable Long id) throws Exception {
         return (List<Servico>) servicoService.procurarServioPeloID(id);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletarOrdemServico(@PathVariable Integer id){
+    public void deletarOrdemServico(@PathVariable Long id){
         try{
             servicoService.deletarOrdemServico(id);
         }catch (RuntimeException erro){

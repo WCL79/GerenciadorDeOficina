@@ -7,45 +7,27 @@ import java.time.LocalDate;
 public class CadastrarServicoDTO {
 
 
-    private String ordemDeServico;
-
-    private String dataCriacao;
-
-    private String tipoDeServico;
+    private String os;
 
     private String mecanica;
 
     private Double valor;
 
+    private String item;
+
+    private String dataCriacao;
+
+    private Long idVeiculo;
+
     public CadastrarServicoDTO() {
     }
 
-    public Double getValor() {
-        return valor;
+    public String getOs() {
+        return os;
     }
 
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
-
-    public String getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public String getOrdemDeServico() {
-        return ordemDeServico;
-    }
-
-    public void setOrdemDeServico(String ordemDeServico) {
-        this.ordemDeServico = ordemDeServico;
-    }
-
-    public String getTipoDeServico() {
-        return tipoDeServico;
+    public void setOs(String os) {
+        this.os = os;
     }
 
     public String getMecanica() {
@@ -56,18 +38,47 @@ public class CadastrarServicoDTO {
         this.mecanica = mecanica;
     }
 
-    public void setTipoDeServico(String tipoDeServico) {
-        this.tipoDeServico = tipoDeServico;
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
+    }
+
+    public String getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(String dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public Long getIdVeiculo() {
+        return idVeiculo;
+    }
+
+    public void setIdVeiculo(Long idVeiculo) {
+        this.idVeiculo = idVeiculo;
     }
 
     public Servico converterCadastrarServicoDTOParaServico() {
 
         Servico servico = new Servico();
         servico.setDataCriacao(this.dataCriacao);
-        servico.setOrdemDeServico(this.ordemDeServico);
-        servico.setTipoDeServico(this.tipoDeServico);
+        servico.setOs(this.os);
+        servico.setItem(this.item);
         servico.setMecanica(this.mecanica);
         servico.setValor(this.valor);
+        servico.setIdVeiculo(this.idVeiculo);
 
         return servico;
     }
