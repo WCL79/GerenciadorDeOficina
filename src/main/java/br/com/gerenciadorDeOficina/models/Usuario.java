@@ -12,13 +12,13 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 50, nullable = false)
+    @Column
     private String nomeCompleto;
 
-    @Column(length = 150, nullable = false, unique = true)
+    @Column
     private String email;
 
-    @Column(nullable = false)
+    @Column
     private String senha;
 
     @ManyToMany
@@ -73,19 +73,6 @@ public class Usuario {
 
     public void setVeiculoList(List<Veiculo> veiculoList) {
         this.veiculoList = veiculoList;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 
 }

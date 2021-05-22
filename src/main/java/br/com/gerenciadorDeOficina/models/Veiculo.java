@@ -2,7 +2,6 @@ package br.com.gerenciadorDeOficina.models;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 @Table(name = "tb_veiculo")
 @Entity
@@ -12,20 +11,20 @@ public class Veiculo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @Column(length = 15, nullable = false)
-    private String placa;
-
-    @Column(length = 20, nullable = false)
+    @Column
     private String marca;
 
-    @Column(length = 12, nullable = false)
+    @Column
+    private String modelo;
+
+    @Column
     private String cor;
 
-    @Column(length = 10, nullable = false)
-    private String ano;
+    @Column
+    private String placa;
 
-    @Column(length = 50, nullable = false)
-    private String modelo;
+    @Column
+    private String ano;
 
     @OneToMany
     private List<Servico> servicoList;
