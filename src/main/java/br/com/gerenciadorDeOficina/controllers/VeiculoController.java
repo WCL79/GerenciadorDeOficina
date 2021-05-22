@@ -10,11 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/veiculo")
+@RequestMapping("veiculo")
 public class VeiculoController {
 
 
@@ -33,6 +34,14 @@ public class VeiculoController {
 
         return veiculoService.cadastrar(cadastrarVeiculoDTO.converterCadastrarVeiculoDTOParaVeiculo());
     }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Veiculo> buscarVeiculoPorID(@PathVariable Long id){
+        Veiculo veiculo = veiculoService.buscarVeiculoPorID(id);
+        return  ResponseEntity.ok(veiculo);
+    }
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Veiculo> mostrarTodosOsVeiculos() {
@@ -41,7 +50,7 @@ public class VeiculoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Veiculo> excluirVeiculo(@PathVariable Long id){
-        this.veiculoRepository.deleteById(id);
+        veiculoService.deletarVeiculo(id);
         return ResponseEntity.noContent().build();
     }
 }

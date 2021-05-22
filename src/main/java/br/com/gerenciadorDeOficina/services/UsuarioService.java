@@ -46,7 +46,6 @@ public class UsuarioService {
         if (optionalUsuario.isEmpty()) {
             throw new RuntimeException("Usuário com email " + email + " não localizado!");
         }
-
         return optionalUsuario.get();
     }
 }

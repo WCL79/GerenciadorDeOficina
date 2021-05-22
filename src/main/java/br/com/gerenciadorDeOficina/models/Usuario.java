@@ -2,6 +2,7 @@ package br.com.gerenciadorDeOficina.models;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "usuarios")
@@ -20,13 +21,18 @@ public class Usuario {
     @Column(nullable = false)
     private String senha;
 
-    @OneToMany
-    @JoinTable (name = "tb_usuario_veiculo",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn (name = "veiculo_id"))
+    @ManyToMany
     private List<Veiculo> veiculoList;
 
     public Usuario() {
+    }
+
+    public Usuario(Long id, String nomeCompleto, String email, String senha, List<Veiculo> veiculoList) {
+        this.id = id;
+        this.nomeCompleto = nomeCompleto;
+        this.email = email;
+        this.senha = senha;
+        this.veiculoList = veiculoList;
     }
 
     public Long getId() {
@@ -68,4 +74,18 @@ public class Usuario {
     public void setVeiculoList(List<Veiculo> veiculoList) {
         this.veiculoList = veiculoList;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(id, usuario.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
 }
