@@ -12,13 +12,13 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(length = 50, nullable = false)
     private String nomeCompleto;
 
-    @Column
+    @Column(length = 150, nullable = false, unique = true)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private String senha;
 
     @ManyToMany

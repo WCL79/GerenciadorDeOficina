@@ -11,7 +11,7 @@ public class Veiculo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @Column
+    @Column(length = 50, nullable = false)
     private String marca;
 
     @Column
@@ -20,7 +20,7 @@ public class Veiculo {
     @Column
     private String cor;
 
-    @Column
+    @Column(length = 150, nullable = false, unique = true)
     private String placa;
 
     @Column

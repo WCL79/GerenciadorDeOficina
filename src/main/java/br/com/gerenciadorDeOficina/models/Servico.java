@@ -15,7 +15,7 @@ public class Servico {
     @Column(length = 20)
     private String os;
 
-    @Column(length = 20)
+    @Column(length = 50, nullable = false)
     private String mecanica;
 
     @Column
@@ -24,7 +24,7 @@ public class Servico {
     @Column(length = 50)
     private String item;
 
-    @Column
+    @Column(length = 50, nullable = false)
     private String dataCriacao;
 
     @Column
