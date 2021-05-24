@@ -12,19 +12,19 @@ public class Servico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 20)
+    @Column
     private String os;
 
-    @Column(length = 50, nullable = false)
+    @Column
     private String mecanica;
 
     @Column
     private Double valor;
 
-    @Column(length = 50)
+    @Column
     private String item;
 
-    @Column(length = 50, nullable = false)
+    @Column
     private String dataCriacao;
 
     @Column

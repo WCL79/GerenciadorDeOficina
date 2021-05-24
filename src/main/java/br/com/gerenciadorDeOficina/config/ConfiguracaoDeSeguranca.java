@@ -39,13 +39,13 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
         http.cors().configurationSource(configuracaoDeCors());
 
         http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/clientes", "veiculo**", "servico**")
+                .antMatchers(HttpMethod.POST, "/cliente", "veiculo**", "servico**")
                 .permitAll()
-                .antMatchers(HttpMethod.POST, "login")
+                .antMatchers(HttpMethod.POST, "/login")
                 .permitAll()
-                .antMatchers(HttpMethod.GET, "/clientes", "veiculo**", "servico**")
+                .antMatchers(HttpMethod.GET, "/cliente", "veiculo**", "servico**")
                 .permitAll()
-                .antMatchers(HttpMethod.PATCH, "/clientes/**", "veiculo**", "servico**")
+                .antMatchers(HttpMethod.PATCH, "/cliente/**", "veiculo**", "servico**")
                 .permitAll()
                 .antMatchers("/h2-console/**")
                 .permitAll()
