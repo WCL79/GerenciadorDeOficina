@@ -1,11 +1,10 @@
 package br.com.gerenciadorDeOficina.controllers;
 
-import br.com.gerenciadorDeOficina.dtos.entrada.CadastarUsuarioDTO;
-import br.com.gerenciadorDeOficina.dtos.entrada.CadastrarServicoDTO;
-import br.com.gerenciadorDeOficina.models.Servico;
+import br.com.gerenciadorDeOficina.dtos.entrada.CadastrarUsuarioDTO;
 import br.com.gerenciadorDeOficina.models.Usuario;
 import br.com.gerenciadorDeOficina.repositories.UsuarioRepository;
 import br.com.gerenciadorDeOficina.services.UsuarioService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +14,7 @@ import javax.validation.Valid;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/cliente")
 public class UsuarioController {
 
     private final UsuarioRepository usuarioRepository;
@@ -29,15 +28,16 @@ public class UsuarioController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Usuario cadastrarUsuario(@RequestBody CadastarUsuarioDTO cadastarUsuarioDTO) throws Exception {
-        return usuarioService.cadastrarNovoUsuario(cadastarUsuarioDTO.converterCadastrarUsuarioDTOParaUsuario());
+    @ApiOperation(value = "Cadastrar um novo usuário")
+    public void cadastrarNovoUsuario(@RequestBody @Valid CadastrarUsuarioDTO usuario) throws Exception {
+        Usuario novoUsuario = usuarioService.cadastrarNovoUsuario(usuario.converterDtoParaModelo());
     }
-
-    @GetMapping
-    public ResponseEntity<Iterable<Usuario>> indexDeLista(){
-        Iterable<Usuario> clienteList = this.usuarioRepository.findAll();
-        return  ResponseEntity.ok(clienteList);
-    }
+        @GetMapping
+        @ResponseStatus(HttpStatus.OK)
+        @ApiOperation(value = "Mostrar todos os usuários")
+        public Iterable<CadastrarUsuarioDTO> mostarTodosUsuarios() {
+            return CadastrarUsuarioDTO.converterListaDeModeloParaListaDto(usuarioService.obterTodosUsuarios());
+        }
 
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> atualizarClientes(@PathVariable Long id, @RequestBody  Usuario usuario){

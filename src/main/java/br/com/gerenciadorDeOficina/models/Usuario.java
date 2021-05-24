@@ -12,28 +12,17 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 50, nullable = false)
+    @Column
     private String nomeCompleto;
 
-    @Column(length = 150, nullable = false, unique = true)
+    @Column
     private String email;
 
-    @Column(nullable = false)
+    @Column
     private String senha;
 
     @ManyToMany
     private List<Veiculo> veiculoList;
-
-    public Usuario() {
-    }
-
-    public Usuario(Long id, String nomeCompleto, String email, String senha, List<Veiculo> veiculoList) {
-        this.id = id;
-        this.nomeCompleto = nomeCompleto;
-        this.email = email;
-        this.senha = senha;
-        this.veiculoList = veiculoList;
-    }
 
     public Long getId() {
         return id;
