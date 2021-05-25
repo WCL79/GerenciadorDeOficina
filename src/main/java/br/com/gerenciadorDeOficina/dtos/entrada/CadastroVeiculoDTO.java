@@ -2,16 +2,23 @@ package br.com.gerenciadorDeOficina.dtos.entrada;
 
 import br.com.gerenciadorDeOficina.models.Veiculo;
 
+import javax.validation.constraints.NotNull;
+
 public class CadastroVeiculoDTO {
 
+    @NotNull(message = "{validacao.campo_obrigatorio}")
     private String placa;
 
+    @NotNull(message = "{validacao.campo_obrigatorio}")
     private String marca;
 
+    @NotNull(message = "{validacao.campo_obrigatorio}")
     private String cor;
 
+    @NotNull(message = "{validacao.campo_obrigatorio}")
     private String ano;
 
+    @NotNull(message = "{validacao.campo_obrigatorio}")
     private String modelo;
 
 
@@ -62,7 +69,6 @@ public class CadastroVeiculoDTO {
     public Veiculo converterCadastrarVeiculoDTOParaVeiculo(){
 
         Veiculo veiculo = new Veiculo();
-
         veiculo.setPlaca(this.placa);
         veiculo.setMarca(this.marca);
         veiculo.setCor(this.cor);
