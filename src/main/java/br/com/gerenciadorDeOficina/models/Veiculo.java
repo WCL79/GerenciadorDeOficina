@@ -27,6 +27,7 @@ public class Veiculo {
     private String ano;
 
     @OneToMany
+    @JoinColumn(name = "id_veiculo")
     private List<Servico> servicoList;
 
     public Long getId() {

@@ -27,7 +27,8 @@ public class Servico {
     @Column
     private String dataCriacao;
 
-    @Column
+
+    @Column(name = "id_veiculo")
     private Long idVeiculo;
 
     public Servico() {
