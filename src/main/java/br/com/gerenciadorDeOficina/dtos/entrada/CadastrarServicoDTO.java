@@ -1,23 +1,28 @@
 package br.com.gerenciadorDeOficina.dtos.entrada;
 
-import br.com.gerenciadorDeOficina.models.Servico;;
+import br.com.gerenciadorDeOficina.models.Servico;
+import com.fasterxml.jackson.annotation.JsonFormat;;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public class CadastrarServicoDTO {
+public class CadastrarServicoDTO{
 
-
-    private String os;
-
-    private String mecanica;
-
-    private Double valor;
-
-    private String item;
-
+    @NotNull(message = "{validacao.campo_obrigatorio}")
     private String dataCriacao;
 
-    private Long idVeiculo;
+    @NotNull(message = "{validacao.campo_obrigatorio}")
+    private String os;
+
+    @NotNull(message = "{validacao.campo_obrigatorio}")
+    private String mecanica;
+
+    @NotNull(message = "{validacao.campo_obrigatorio}")
+    private String item;
+
+    @NotNull(message = "{validacao.campo_obrigatorio}")
+    private Double valor;
+
 
     public CadastrarServicoDTO() {
     }
@@ -62,14 +67,6 @@ public class CadastrarServicoDTO {
         this.dataCriacao = dataCriacao;
     }
 
-    public Long getIdVeiculo() {
-        return idVeiculo;
-    }
-
-    public void setIdVeiculo(Long idVeiculo) {
-        this.idVeiculo = idVeiculo;
-    }
-
     public Servico converterCadastrarServicoDTOParaServico() {
 
         Servico servico = new Servico();
@@ -78,8 +75,6 @@ public class CadastrarServicoDTO {
         servico.setItem(this.item);
         servico.setMecanica(this.mecanica);
         servico.setValor(this.valor);
-        servico.setIdVeiculo(this.idVeiculo);
-
         return servico;
     }
 }

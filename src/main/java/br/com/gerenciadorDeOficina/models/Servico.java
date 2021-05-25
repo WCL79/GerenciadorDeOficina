@@ -1,8 +1,7 @@
 package br.com.gerenciadorDeOficina.models;
 
 import javax.persistence.*;
-import java.util.List;
-
+import java.time.LocalDate;
 
 @Table(name = "servicos")
 @Entity
@@ -15,13 +14,13 @@ public class Servico {
     @Column
     private String os;
 
-    @Column
+    @Column(nullable = false)
     private String mecanica;
 
-    @Column
+    @Column(nullable = false)
     private Double valor;
 
-    @Column
+    @Column(nullable = false)
     private String item;
 
     @Column

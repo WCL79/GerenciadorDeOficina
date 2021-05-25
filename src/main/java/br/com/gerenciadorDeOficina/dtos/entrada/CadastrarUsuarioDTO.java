@@ -2,13 +2,19 @@ package br.com.gerenciadorDeOficina.dtos.entrada;
 
 import br.com.gerenciadorDeOficina.models.Usuario;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CadastrarUsuarioDTO {
 
+        @NotNull(message = "{validacao.campo_obrigatorio}")
         private String nomeCompleto;
+
+        @NotNull(message = "{validacao.campo_obrigatorio}")
         private String email;
+
+        @NotNull(message = "{validacao.campo_obrigatorio}")
         private String senha;
 
         public CadastrarUsuarioDTO() {
