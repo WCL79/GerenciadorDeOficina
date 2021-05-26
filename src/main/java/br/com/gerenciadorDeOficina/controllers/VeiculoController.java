@@ -1,7 +1,6 @@
 package br.com.gerenciadorDeOficina.controllers;
 
 import br.com.gerenciadorDeOficina.dtos.entrada.CadastroVeiculoDTO;
-import br.com.gerenciadorDeOficina.models.Usuario;
 import br.com.gerenciadorDeOficina.models.Veiculo;
 import br.com.gerenciadorDeOficina.repositories.VeiculoRepository;
 import br.com.gerenciadorDeOficina.services.VeiculoService;
@@ -10,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 @CrossOrigin
@@ -52,5 +50,12 @@ public class VeiculoController {
     public ResponseEntity<Veiculo> excluirVeiculo(@PathVariable Long id){
         veiculoService.deletarVeiculo(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public Veiculo atualizarCadastroVeiculoDTO(@PathVariable Long id, @RequestBody CadastroVeiculoDTO cadastroVeiculoDTO){
+
+        Veiculo veiculo = veiculoService.atualizar(id, cadastroVeiculoDTO.converterCadastrarVeiculoDTOParaVeiculo());
+        return veiculo;
     }
 }

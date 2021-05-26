@@ -1,5 +1,6 @@
 package br.com.gerenciadorDeOficina.services;
 
+import br.com.gerenciadorDeOficina.dtos.entrada.CadastroVeiculoDTO;
 import br.com.gerenciadorDeOficina.models.Veiculo;
 import br.com.gerenciadorDeOficina.repositories.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,15 @@ public class VeiculoService {
     public Veiculo buscarVeiculoPorID(Long id){
         Veiculo veiculo = veiculoRepository.findById(id).get();
         return veiculo;
+    }
+
+    public Veiculo atualizar(Long id, Veiculo veiculo ){
+        Veiculo veiculoAtualizar = buscarVeiculoPorID(id);
+        veiculoAtualizar.setModelo(veiculo.getModelo());
+        veiculoAtualizar.setAno(veiculo.getModelo());
+        veiculoAtualizar.setMarca(veiculo.getMarca());
+        veiculoAtualizar.setCor(veiculo.getCor());
+
+        return veiculoRepository.save(veiculoAtualizar);
     }
 }
