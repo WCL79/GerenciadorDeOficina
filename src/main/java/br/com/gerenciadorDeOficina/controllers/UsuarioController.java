@@ -14,7 +14,7 @@ import javax.validation.Valid;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("cliente")
 public class UsuarioController {
 
     private final UsuarioRepository usuarioRepository;

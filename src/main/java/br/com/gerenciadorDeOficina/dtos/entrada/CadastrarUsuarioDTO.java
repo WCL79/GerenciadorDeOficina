@@ -56,6 +56,7 @@ public class CadastrarUsuarioDTO {
         public static CadastrarUsuarioDTO  converterModeloParaDTO(Usuario usuario) {
             CadastrarUsuarioDTO  dto = new CadastrarUsuarioDTO();
             dto.setNomeCompleto(usuario.getNomeCompleto());
+            dto.setSenha(usuario.getSenha());
             dto.setEmail(usuario.getEmail());
 
             return dto;

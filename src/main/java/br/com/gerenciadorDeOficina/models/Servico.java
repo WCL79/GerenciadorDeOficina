@@ -1,7 +1,6 @@
 package br.com.gerenciadorDeOficina.models;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Table(name = "servicos")
 @Entity
@@ -25,7 +24,6 @@ public class Servico {
 
     @Column
     private String dataCriacao;
-
 
     @Column(name = "id_veiculo")
     private Long idVeiculo;

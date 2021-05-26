@@ -2,7 +2,6 @@ package br.com.gerenciadorDeOficina.models;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "usuarios")
@@ -21,8 +20,20 @@ public class Usuario {
     @Column
     private String senha;
 
-    @ManyToMany
+    @OneToMany
+    @JoinColumn(name = "id_usuario")
     private List<Veiculo> veiculoList;
+
+    public Usuario() {
+    }
+
+    public Usuario(Long id, String nomeCompleto, String email, String senha, List<Veiculo> veiculoList) {
+        this.id = id;
+        this.nomeCompleto = nomeCompleto;
+        this.email = email;
+        this.senha = senha;
+        this.veiculoList = veiculoList;
+    }
 
     public Long getId() {
         return id;
@@ -63,5 +74,4 @@ public class Usuario {
     public void setVeiculoList(List<Veiculo> veiculoList) {
         this.veiculoList = veiculoList;
     }
-
 }

@@ -19,6 +19,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.core.env.Environment;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -33,29 +36,29 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
     @Autowired
     private UsuarioService usuarioService;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception{
-        http.csrf().disable();
-        http.cors().configurationSource(configuracaoDeCors());
+    @Autowired
+    private Environment env;
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        if (Arrays.asList(env.getActiveProfiles()).contains("test")) {
+            http.headers().frameOptions().disable();
+        }
+
+        http.cors().and().csrf().disable();
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/cliente", "veiculo**", "servico**")
+                .antMatchers(HttpMethod.POST, "cliente**", "veiculo**", "servico**")
                 .permitAll()
                 .antMatchers(HttpMethod.POST, "/login")
                 .permitAll()
-                .antMatchers(HttpMethod.GET, "/cliente", "veiculo**", "servico**")
+                .antMatchers(HttpMethod.GET, "cliente", "veiculo**", "servico**")
                 .permitAll()
-                .antMatchers(HttpMethod.PATCH, "/cliente**", "veiculo**", "servico**")
+                .antMatchers(HttpMethod.PATCH, "cliente**", "veiculo**", "servico**")
                 .permitAll()
-                .antMatchers(HttpMethod.DELETE, "/cliente**", "/veiculo**", "servico**")
-                .permitAll()
-                .antMatchers("/h2-console/**")
-                .permitAll()
-                .anyRequest().authenticated();
-
+                .antMatchers(HttpMethod.DELETE, "cliente**", "veiculo/**" ,"servico**")
+                .authenticated();
         http.headers().frameOptions().disable();
-
-
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilter(new FiltroAutencicacaoJWT(componenteJWT, authenticationManager(), usuarioService));
@@ -63,18 +66,27 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
 
     }
 
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+        configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
                 "/configuration/**", "/swagger-ui.html", "/webjars/**");
     }
-
+/*
     @Bean
     CorsConfigurationSource configuracaoDeCors(){
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
         return source;
-    }
+    }*/
 
     @Bean
     protected BCryptPasswordEncoder critografarSenha() {
