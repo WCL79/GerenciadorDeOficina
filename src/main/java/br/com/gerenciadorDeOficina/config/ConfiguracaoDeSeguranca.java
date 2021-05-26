@@ -47,7 +47,7 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers(HttpMethod.PATCH, "/cliente**", "veiculo**", "servico**")
                 .permitAll()
-                .antMatchers(HttpMethod.DELETE, "/cliente**", "veiculo**", "servico**")
+                .antMatchers(HttpMethod.DELETE, "/cliente**", "/veiculo**", "servico**")
                 .permitAll()
                 .antMatchers("/h2-console/**")
                 .permitAll()

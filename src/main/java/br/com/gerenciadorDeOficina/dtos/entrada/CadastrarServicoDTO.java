@@ -1,7 +1,7 @@
 package br.com.gerenciadorDeOficina.dtos.entrada;
 
 import br.com.gerenciadorDeOficina.models.Servico;
-import com.fasterxml.jackson.annotation.JsonFormat;;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
