@@ -2,6 +2,7 @@ package br.com.gerenciadorDeOficina.services;
 
 import br.com.gerenciadorDeOficina.dtos.entrada.CadastrarServicoDTO;
 import br.com.gerenciadorDeOficina.models.Servico;
+import br.com.gerenciadorDeOficina.models.Veiculo;
 import br.com.gerenciadorDeOficina.repositories.ServicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,18 @@ public class ServicoService {
     }
     public void deletarOrdemServico(Long id) {
         servicoRepository.deleteById(id);
+    }
+
+    public Servico atualizar(Long id, Servico servico) throws Exception {
+        Servico servicoAtualizar = procurarServioPeloID(id);
+        servicoAtualizar.setItem(servico.getItem());
+        servicoAtualizar.setOs(servico.getOs());
+        servicoAtualizar.setIdVeiculo(servico.getIdVeiculo());
+        servicoAtualizar.setMecanica(servico.getMecanica());
+        servicoAtualizar.setDataCriacao(servico.getDataCriacao());
+        servicoAtualizar.setValor(servico.getValor());
+
+        return servicoRepository.save(servicoAtualizar);
     }
 }
 
