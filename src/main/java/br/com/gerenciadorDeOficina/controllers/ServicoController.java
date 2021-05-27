@@ -1,6 +1,9 @@
 package br.com.gerenciadorDeOficina.controllers;
 
+import br.com.gerenciadorDeOficina.dtos.entrada.CadastrarServicoDTO;
+import br.com.gerenciadorDeOficina.dtos.entrada.CadastroVeiculoDTO;
 import br.com.gerenciadorDeOficina.models.Servico;
+import br.com.gerenciadorDeOficina.models.Veiculo;
 import br.com.gerenciadorDeOficina.services.ServicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,16 +35,19 @@ public class ServicoController {
         return (List<Servico>) servicoService.procurarServioPeloID(id);
     }
 
-    @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Servico> excluir(@PathVariable Long id) throws Exception {
-        Optional<Servico> cliOptionalServico = Optional.ofNullable(servicoService.procurarServioPeloID(id));
-        if(cliOptionalServico.isPresent()) {
-            servicoService.deletarOrdemServico(id);
-            return 	ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Servico> excluirServico(@PathVariable Long id){
+        servicoService.deletarOrdemServico(id);
+        return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public Servico atualizarCadastroDeServico(@PathVariable Long id, @RequestBody CadastrarServicoDTO cadastrarServicoDTO) throws Exception {
+
+        Servico servico= servicoService.atualizar(id, cadastrarServicoDTO.converterCadastrarServicoDTOParaServico());
+        return servico;
+    }
+}
 /*
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -52,4 +58,3 @@ public class ServicoController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, erro.getMessage());
         }
     }*/
-}
